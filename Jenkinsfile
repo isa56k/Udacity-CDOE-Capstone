@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Setup Python Environment') {
       steps {
-        sh 'make setup && make activate'
+        sh 'make setup && ls -lamo ~/.capstone/bin/activate' 
+        sh 'make activate'
         sh 'make install'
       }
     }
