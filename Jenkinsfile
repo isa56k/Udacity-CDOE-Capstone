@@ -12,7 +12,6 @@ pipeline {
               }
          }
         // Upload to AWS
-        /*
          stage('Upload to AWS') {
               steps {
                   withAWS(region:'us-west-2',credentials:'aws-static-up') {
@@ -20,7 +19,7 @@ pipeline {
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'cdoe-proj-aws-static')
                   }
               }
-         */
+    
          }
          
      }  
