@@ -12,7 +12,6 @@ lint:
 	pylint --disable=R,C,W1203,W1309 App/app.py
 	tidy -q -e App/templates/home.html
 
-
 all: install lint test
 
 
