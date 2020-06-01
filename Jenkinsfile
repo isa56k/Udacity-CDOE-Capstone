@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Lint Python') {
       steps {
-        sh '--disable=R,C,W1203,W1309 /App/app.py'
+        sh 'pylint --disable=R,C,W1203,W1309 /App/app.py'
       }
     }
 
