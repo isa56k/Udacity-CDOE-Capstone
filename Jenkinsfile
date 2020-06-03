@@ -4,9 +4,7 @@ pipeline {
     stage('Setup Python Environment') {
       steps {
         sh 'make setup && ls -lamo ~/.capstone/bin/activate' 
-        sh '. ~/.capstone/bin/activate'
-        sh 'which python && python -V'
-        sh 'make install'
+        sh '. ~/.capstone/bin/activate && which python && python -V && make install'
       }
     }
     stage('Lint Python') {
