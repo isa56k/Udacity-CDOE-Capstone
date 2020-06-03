@@ -10,7 +10,7 @@ pipeline {
     stage('Lint Python') {
       steps {
         sh 'pwd && ls'
-        sh 'pylint --disable=R,C,W1203,W1309 ./App/app.py'
+        sh '. ~/.capstone/bin/activate && pylint --disable=R,C,W1203,W1309 ./App/app.py'
       }
     }
     stage('Lint HTML') {
