@@ -3,17 +3,22 @@ pipeline {
   stages {
     stage('Setup Python Environment') {
       steps {
-        sh 'make setup && ls -lamo ~/.capstone/bin/activate' 
-        sh '. ~/.capstone/bin/activate && which python && python -V && make install'
+        sh '''
+          ./App/make setup 
+          ~/.capstone/bin/activate
+          ./App/make install
+        '''
       }
     }
-    stage('Lint Python') {
+    stage('Lint Python App') {
       steps {
-        sh 'pwd && ls'
-        sh '. ~/.capstone/bin/activate && pylint --disable=R,C,W1203,W1309 ./App/app.py'
+        sh '''
+          . ~/.capstone/bin/activate 
+          pylint --disable=R,C,W1203,W1309 ./App/app.py
+        '''  
       }
     }
-    stage('Lint HTML') {
+    stage('Lint HTML App') {
       steps {
         sh 'tidy -q -e ./App/templates/*.html'
       }
