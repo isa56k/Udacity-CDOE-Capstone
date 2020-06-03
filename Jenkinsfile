@@ -4,9 +4,10 @@ pipeline {
     stage('Setup Python Environment') {
       steps {
         sh '''
-          ./App/make setup 
+          cd ./App/
+          make setup 
           ~/.capstone/bin/activate
-          ./App/make install
+          make install
         '''
       }
     }
