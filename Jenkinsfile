@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''
           cd ./App/
+          pwd && ls -lamo
           make setup 
           ~/.capstone/bin/activate
           make install
