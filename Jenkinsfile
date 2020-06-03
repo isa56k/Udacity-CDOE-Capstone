@@ -7,7 +7,7 @@ pipeline {
           cd ./App/
           pwd && ls -lamo
           make setup 
-          ~/.capstone/bin/activate
+          . ~/.capstone/bin/activate
           make install
         '''
       }
