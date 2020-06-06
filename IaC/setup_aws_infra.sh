@@ -14,7 +14,7 @@ echo "Creating EKS cluster..."
 eksctl create cluster \
 --name capstone-proj \
 --version 1.16 \
---region us-east-2 \
+--region us-west-2 \
 --nodegroup-name standard-workers \
 --node-type t3.micro \
 --nodes 2 \
