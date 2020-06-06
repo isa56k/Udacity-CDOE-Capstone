@@ -47,7 +47,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $(docker image ls 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj -aq)"
+        sh "docker rmi \$(docker image ls 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj -aq)"
       }
     }
   }
