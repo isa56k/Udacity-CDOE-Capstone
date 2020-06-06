@@ -1,8 +1,4 @@
 pipeline {
-  environment {
-    registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
-    registryCredential = 'AWSECR'
-  }
   agent any
   stages {
     stage('Setup Python Environment') {
