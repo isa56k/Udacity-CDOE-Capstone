@@ -39,8 +39,8 @@ pipeline {
     stage('Deploy Image') {
       steps{    
         script {
-          docker.withRegistry( registry, AWSECR ) {
-            dockerImage.push()
+          docker.withRegistry("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj", "AWSECR" ) {
+            docker.image("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj").push()
           }
         }
       }
