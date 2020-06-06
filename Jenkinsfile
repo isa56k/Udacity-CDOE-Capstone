@@ -40,7 +40,7 @@ pipeline {
       steps{    
         script {
           docker.withRegistry("https://" + registry, registryCredential) {
-            docker.image(registry).push()
+            docker.image(registry + ":${env.BUILD_ID}").push()
           }
         }
       }
