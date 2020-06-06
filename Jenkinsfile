@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
+    registry = "https://645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
     registryCredential = 'ecr:us-west-2:aws-ecr-creds'
   }
   agent any
