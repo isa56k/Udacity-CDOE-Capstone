@@ -39,7 +39,7 @@ pipeline {
     stage('Deploy Image') {
       steps{    
         script {
-          docker.withRegistry("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj", "ecr:us-west-2:aws-ecr-creds" ) {
+          docker.withRegistry("https://645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj", "ecr:us-west-2:aws-ecr-creds" ) {
             docker.image("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj").push()
           }
         }
