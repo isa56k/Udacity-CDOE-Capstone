@@ -40,14 +40,14 @@ pipeline {
       steps{    
         script {
           docker.withRegistry("https://" + registry, registryCredential) {
-            docker.image("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj").push()
+            docker.image(registry).push()
           }
         }
       }
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi $(docker image ls 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj -aq)"
       }
     }
   }
