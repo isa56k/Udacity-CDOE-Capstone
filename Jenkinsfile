@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
-    registryCredential = 'awsecr'
+    registryCredential = 'AWSECR'
   }
   agent any
   stages {
@@ -29,11 +29,19 @@ pipeline {
         sh 'tidy -q -e ./App/templates/*.html'
       }
     }
-    stage('Build & Deploy Docker Image'){
+    stage('Build Docker Image'){
       steps{
         script{
           docker.build registry + ":$BUILD_NUMBER"
-          docker.push()
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{    
+        script {
+          docker.withRegistry( 'registry', 'registryCredential' ) {
+            dockerImage.push()
+          }
         }
       }
     }
