@@ -39,7 +39,7 @@ pipeline {
     stage('Deploy Image') {
       steps{    
         script {
-          docker.withRegistry( 'registry', 'registryCredential' ) {
+          docker.withRegistry( registry, AWSECR ) {
             dockerImage.push()
           }
         }
