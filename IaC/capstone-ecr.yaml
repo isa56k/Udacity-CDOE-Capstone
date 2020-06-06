@@ -1,0 +1,41 @@
+Description: >
+    Course: Udacity Cloud DevOps Engineer Course
+    Unit: Capstone Project
+    Project: Capstone
+    By: isa56k
+Parameters:
+  # Paramenters are entirely optional.
+  # but using them will make your cloudformation templates more reusable
+  # use them for things that may change over time, such as instance type,
+  # VPCs and so on.
+  EnvironmentName:
+      Description: An environment name that will be prefixed to resource names
+      Type: String
+  
+Resources:
+  CapstoneRepository: 
+    Type: AWS::ECR::Repository
+    Properties: 
+      RepositoryName: "cdoe-capstone-proj"
+      RepositoryPolicyText: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Sid: AllowPushPull
+            Effect: Allow
+            Principal: 
+              AWS: 
+                - "arn:aws:iam::645851037944:user/cdoe-capstone"
+            Action: 
+              - "ecr:GetAuthorizationToken"
+              - "ecr:BatchCheckLayerAvailability"
+              - "ecr:GetDownloadUrlForLayer"
+              - "ecr:GetRepositoryPolicy"
+              - "ecr:DescribeRepositories"
+              - "ecr:ListImages"
+              - "ecr:DescribeImages"
+              - "ecr:BatchGetImage"
+              - "ecr:GetLifecyclePolicy"
+              - "ecr:GetLifecyclePolicyPreview"
+              - "ecr:ListTagsForResource"
+              - "ecr:DescribeImageScanFindings"
