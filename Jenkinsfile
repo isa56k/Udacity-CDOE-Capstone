@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
+    registryCredential = 'ecr:us-west-2:aws-ecr-creds'
+  }
   agent any
   stages {
     stage('Setup Python Environment') {
@@ -35,7 +39,7 @@ pipeline {
     stage('Deploy Image') {
       steps{    
         script {
-          docker.withRegistry("https://645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj", "ecr:us-west-2:aws-ecr-creds" ) {
+          docker.withRegistry(registry, registryCredential) {
             docker.image("645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj").push()
           }
         }
