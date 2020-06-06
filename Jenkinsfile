@@ -29,19 +29,11 @@ pipeline {
         sh 'tidy -q -e ./App/templates/*.html'
       }
     }
-    stage('Build Docker Image'){
+    stage('Build & Deploy Docker Image'){
       steps{
         script{
           docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-    stage('Deploy Image') {
-      steps{    
-        script {
-          docker.withRegistry( 'registry', 'AWSECR' ) {
-            dockerImage.push()
-          }
+          docker.push()
         }
       }
     }
