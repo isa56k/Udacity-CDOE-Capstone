@@ -32,9 +32,10 @@ pipeline {
     stage('Build Docker Image'){
       steps{
         script{
-          def capstoneImage = docker.build registry + ":${env.BUILD_ID}"
-          capstoneImage.push('latest')
-
+          docker.withRegistry("https://" + registry, registryCredential) {
+            def capstoneImage = docker.build registry + ":${env.BUILD_ID}"
+            capstoneImage.push('latest')
+          }
         }
       }
     }
