@@ -32,10 +32,13 @@ pipeline {
     stage('Build Docker Image'){
       steps{
         script{
-          docker.build registry + ":${env.BUILD_ID}"
+          def capstoneImage = docker.build registry + ":${env.BUILD_ID}"
+          capstoneImage.push('latest')
+
         }
       }
     }
+'''
     stage('Deploy Image') {
       steps{    
         script {
@@ -45,5 +48,6 @@ pipeline {
         }
       }
     }
+'''
   }
 }
