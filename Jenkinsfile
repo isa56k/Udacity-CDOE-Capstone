@@ -38,7 +38,7 @@ pipeline {
         }
       }
     }
-'''
+/*
     stage('Deploy Image') {
       steps{    
         script {
@@ -48,6 +48,6 @@ pipeline {
         }
       }
     }
-'''
+*/
   }
 }
