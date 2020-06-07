@@ -1,0 +1,30 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-web
+  labels:
+    app: capstone-web
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capstone-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: capstone-web
+    spec:
+      containers:
+      - image: 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:52
+        imagePullPolicy: Always
+        name: cdoe-capstone-proj
+        ports:
+        - containerPort: 8080
+          protocol: TCP
