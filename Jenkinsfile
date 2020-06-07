@@ -34,6 +34,7 @@ pipeline {
         script{
           docker.withRegistry("https://" + registry, registryCredential) {
             def capstoneImage = docker.build registry + ":${env.BUILD_ID}"
+            capstoneImage.push()
             capstoneImage.push('latest')
           }
         }
