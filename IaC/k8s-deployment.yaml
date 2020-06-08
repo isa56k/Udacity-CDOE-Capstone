@@ -7,14 +7,14 @@ metadata:
     app: capstone-web
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: capstone-web
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
@@ -22,9 +22,16 @@ spec:
         app: capstone-web
     spec:
       containers:
-      - image: 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:latest
+      - name: cdoe-capstone-proj
+        image: 645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "64Mi"
+            cpu: "250m"
         imagePullPolicy: Always
-        name: cdoe-capstone-proj
         ports:
         - containerPort: 8080
           protocol: TCP
