@@ -43,10 +43,8 @@ pipeline {
     stage('Deploy Image To K8s') {
       steps{
         withAWS(credentials: 'aws-ecr-creds', region: 'us-west-2') {
-          sh """
-            aws eks --region us-west-2 update-kubeconfig --name basic-cluster
-            kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
-          """
+          sh "aws eks --region us-west-2 update-kubeconfig --name basic-cluster"
+          sh "kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}"
         }
         /*
         steps{    
