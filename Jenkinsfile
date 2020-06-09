@@ -43,7 +43,7 @@ pipeline {
     stage('Deploy Image To K8s') {
       steps{    
           sh '''
-            kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
+            ./usr/local/bin/kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
           '''
         }
       }
