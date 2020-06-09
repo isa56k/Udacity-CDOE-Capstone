@@ -40,16 +40,16 @@ pipeline {
         }
       }
     }
-/*
-    stage('Deploy Image') {
+    stage('Deploy Image To K8s') {
       steps{    
         script {
-          docker.withRegistry("https://" + registry, registryCredential) {
-            docker.image(registry + ":${env.BUILD_ID}").push()
+          sh '''
+            echo "Build Number is ${env.BUILD_ID}"
+            kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}"
+          '''
           }
         }
       }
     }
-*/
   }
 }

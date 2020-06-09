@@ -11,5 +11,10 @@ def hostname():
     returnString = str('Hello, World from ' + platform.node() + '!')
     return returnString
 
+@app.route('/healthcheck')
+def hostname():
+    returnString = str('ok')
+    return returnString
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
