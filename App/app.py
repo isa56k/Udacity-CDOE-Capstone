@@ -12,7 +12,7 @@ def hostname():
     return returnString
 
 @app.route('/healthcheck')
-def hostname():
+def healthcheck():
     returnString = str('ok')
     return returnString
 
