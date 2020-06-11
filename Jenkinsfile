@@ -52,16 +52,17 @@ pipeline {
             kubectl get pods
             kubectl get service
             kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
-            ok=$(curl http://a985ec492507f4144aefa97d52ec8523-1677730818.us-west-2.elb.amazonaws.com/healthcheck)
-            if [ ${ok} != "ok" ]; then kubectl rollout undo capstone-web fi
-
-
           """
         }
         /*
         steps{    
           sh """
             kubectl --kubeconfig /home/ubuntu/.kube/config set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
+ 
+ 
+           ok=$(curl http://a985ec492507f4144aefa97d52ec8523-1677730818.us-west-2.elb.amazonaws.com/healthcheck)
+           if [ ${ok} != "ok" ]; then kubectl rollout undo capstone-web fi
+
           """
         }
         */
