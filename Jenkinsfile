@@ -3,7 +3,7 @@ pipeline {
     registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
     registryCredential = 'ecr:us-west-2:aws-ecr-creds'
   }
-  agent any {
+  agent any
     stages {
       stage('Setup Python Environment') {
         steps {
@@ -59,6 +59,10 @@ pipeline {
   
             ok=$(curl http://a985ec492507f4144aefa97d52ec8523-1677730818.us-west-2.elb.amazonaws.com/healthcheck)
             if [ ${ok} != "ok" ]; then kubectl rollout undo capstone-web fi
+            
+            docker {
+                args '--build-arg CONT_IMG_VAR=${env.BUILD_ID}'
+                }
 
             """
           }
@@ -66,5 +70,4 @@ pipeline {
         }
       }
     }
-  }
 }
