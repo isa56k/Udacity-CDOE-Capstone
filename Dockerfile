@@ -17,8 +17,5 @@ RUN pip install --upgrade pip &&\
 # Expose port 80
 EXPOSE 8080
 
-# Echo test
-RUN echo "ARGS is ${CONT_IMG_VER}"
-
 # Run app.py at container launch
 CMD ["python", "app.py","${CONT_IMG_VER}"]
