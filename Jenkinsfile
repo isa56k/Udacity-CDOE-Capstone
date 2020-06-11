@@ -4,6 +4,9 @@ pipeline {
     registryCredential = 'ecr:us-west-2:aws-ecr-creds'
   }
   agent any
+      docker {
+        args '--build-arg CONT_IMG_VAR=${env.BUILD_ID}'
+    }
   stages {
     stage('Setup Python Environment') {
       steps {
@@ -43,10 +46,17 @@ pipeline {
     stage('Deploy Image To K8s') {
       steps{
         withAWS(credentials: 'aws-creds', region: 'us-west-2') {
-          sh "aws eks --region us-west-2 update-kubeconfig --name capstone-eks-cluster"
-          sh "kubectl get deployments"
-          sh "kubectl get pods"
-          sh "kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}"
+          sh """
+            aws eks --region us-west-2 update-kubeconfig --name capstone-eks-cluster
+            kubectl get deployments
+            kubectl get pods
+            kubectl get service
+            kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
+            ok=$(curl http://a985ec492507f4144aefa97d52ec8523-1677730818.us-west-2.elb.amazonaws.com/healthcheck)
+            if [ ${ok} != "ok" ]; then kubectl rollout undo capstone-web fi
+
+
+          """
         }
         /*
         steps{    
