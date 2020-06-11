@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Argument Version number passed at build time
 ARG CONT_IMG_VER=0
+ENV VER = ${CONT_IMG_VER}
 
 # Copy source code to working directory
 COPY ./App/ /app/
@@ -19,4 +20,4 @@ EXPOSE 8080
 
 # Run app.py at container launch
 ENTRYPOINT [ "python" ]
-CMD [ "app.py", ${CONT_IMG_VER}]
+CMD [ "app.py", ${VER}]
