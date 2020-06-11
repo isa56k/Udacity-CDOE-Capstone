@@ -3,10 +3,11 @@ pipeline {
     registry = "645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj"
     registryCredential = 'ecr:us-west-2:aws-ecr-creds'
   }
-  agent any
+  agent {
       docker {
         args '--build-arg CONT_IMG_VAR=${env.BUILD_ID}'
     }
+  }
   stages {
     stage('Setup Python Environment') {
       steps {
