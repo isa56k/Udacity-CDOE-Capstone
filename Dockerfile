@@ -3,6 +3,9 @@ FROM python:3.7.3-stretch
 # Working Directory
 WORKDIR /app
 
+# Argument Version number passed at build time
+ARG CONT_IMG_VER=0
+
 # Copy source code to working directory
 COPY ./App/ /app/
 
@@ -14,5 +17,8 @@ RUN pip install --upgrade pip &&\
 # Expose port 80
 EXPOSE 8080
 
+# Echo test
+RUN echo "ARGS is ${CONT_IMG_VER}"
+
 # Run app.py at container launch
-CMD ["python", "app.py"]
+CMD ["python", "app.py","${CONT_IMG_VER}"]

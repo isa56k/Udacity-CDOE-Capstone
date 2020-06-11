@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template("home.html",version=sys.argv[1])
+    return render_template("home.html",version=999)
 
 @app.route('/hostname')
 def hostname():
