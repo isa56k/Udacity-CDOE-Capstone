@@ -33,7 +33,7 @@ pipeline {
         steps{
           script{
             docker.withRegistry("https://" + registry, registryCredential) {
-              def capstoneImage = docker.build(registry + ":${env.BUILD_ID}", "--build-arg CONT_IMG_VAR=${env.BUILD_ID}")
+              def capstoneImage = docker.build(registry + ":${env.BUILD_ID}", "--build-arg CONT_IMG_VAR=${env.BUILD_ID} -f Dockerfile .")
               capstoneImage.push()
               capstoneImage.push('latest')
             }
