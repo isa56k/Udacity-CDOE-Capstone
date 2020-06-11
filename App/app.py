@@ -2,9 +2,11 @@ import platform, sys
 from flask import Flask, render_template
 app = Flask(__name__)
 
+ver = sys.argv[1]
+
 @app.route('/')
 def home():
-    return render_template("home.html",version=999)
+    return render_template("home.html",version=str(ver))
 
 @app.route('/hostname')
 def hostname():
