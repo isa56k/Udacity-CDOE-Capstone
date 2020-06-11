@@ -4,9 +4,6 @@ pipeline {
     registryCredential = 'ecr:us-west-2:aws-ecr-creds'
   }
   agent any {
-      docker {
-        args '--build-arg CONT_IMG_VAR=${env.BUILD_ID}'
-    }
     stages {
       stage('Setup Python Environment') {
         steps {
