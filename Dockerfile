@@ -18,4 +18,5 @@ RUN pip install --upgrade pip &&\
 EXPOSE 8080
 
 # Run app.py at container launch
-CMD ["python", "app.py", ${CONT_IMG_VER}]
+ENTRYPOINT [ "python" ]
+CMD [ "app.py", ${CONT_IMG_VER}]
