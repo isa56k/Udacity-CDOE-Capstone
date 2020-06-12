@@ -15,7 +15,7 @@ def hostname():
 
 @app.route('/healthcheck')
 def healthcheck():
-    returnString = str('ok')
+    returnString = str('ok: ' + sys.argv[1])
     return returnString
 
 if __name__ == "__main__":
