@@ -17,3 +17,4 @@ kubectl apply -f IaC/k8s-service.yaml
 
 To check URL for Webpage use:
 kubectl get svc capstone-web
+
