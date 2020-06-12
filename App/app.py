@@ -6,7 +6,7 @@ ver = sys.argv[1]
 
 @app.route('/')
 def home():
-    return render_template("home.html",version=str(ver))
+    return render_template("home.html",version=str(sys.argv[1]))
 
 @app.route('/hostname')
 def hostname():
