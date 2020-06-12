@@ -48,7 +48,7 @@ pipeline {
               kubectl get deployments
               kubectl get pods
               kubectl get service
-              kubectl set image deployments/capstone-web cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
+              kubectl set image deployments/capstone-web --record=true -n ${env.BUILD_ID} cdoe-capstone-proj=645851037944.dkr.ecr.us-west-2.amazonaws.com/cdoe-capstone-proj:${env.BUILD_ID}
             """
           }
           /*
