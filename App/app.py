@@ -6,7 +6,7 @@ ver = sys.argv[1]
 
 @app.route('/')
 def home():
-    return render_template("home.html",version=str(sys.argv[1]))
+    return render_template("home.html",version=str(ver)
 
 @app.route('/hostname')
 def hostname():
@@ -15,7 +15,7 @@ def hostname():
 
 @app.route('/healthcheck')
 def healthcheck():
-    returnString = str('ok: ' + sys.argv[1])
+    returnString = str('ok: ' + ver)
     return returnString
 
 if __name__ == "__main__":
